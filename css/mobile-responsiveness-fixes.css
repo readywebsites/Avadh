@@ -1,0 +1,740 @@
+/*========== MOBILE RESPONSIVENESS OPTIMIZATIONS ==========*/
+
+/* ========== IMPACT STATS MOBILE FIX ========== */
+@media (max-width: 480px) {
+    .impact_stats_section {
+        width: 100%;
+        padding: 0;
+    }
+
+    .impact_stats_container {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        padding: 35px 10px 0 10px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .impact_stat_card {
+        padding: 16px 12px;
+        min-height: auto;
+        gap: 6px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    .stat_number {
+        font-size: 1.5rem;
+        line-height: 1;
+        margin-bottom: 4px;
+    }
+
+    .stat_label {
+        font-size: 0.55rem;
+        letter-spacing: 0.5px;
+        line-height: 1.3;
+    }
+
+    .view_projects_bar {
+        padding: 14px 0;
+        font-size: 0.9rem;
+        margin-top: 25px;
+    }
+}
+
+/* ========== TIMELINE CONTENT MOBILE FIX ========== */
+@media (max-width: 768px) {
+    .timeline-container {
+        padding: 40px 20px;
+    }
+
+    .timeline-header {
+        margin-bottom: 30px;
+    }
+
+    .timeline-wrapper {
+        gap: 15px;
+    }
+
+    .timeline-years {
+        scrollbar-width: thin;
+    }
+
+    .timeline-years::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .timeline-years::-webkit-scrollbar-thumb {
+        background: #d4af37;
+        border-radius: 2px;
+    }
+
+    .year-btn {
+        white-space: nowrap;
+        flex-shrink: 0;
+    }
+
+    .timeline-content {
+        min-height: auto;
+        padding: 25px 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline-container {
+        padding: 30px 12px;
+    }
+
+    .timeline-header h1 {
+        font-size: 1.5rem;
+        line-height: 1.3;
+    }
+
+    .timeline-header p {
+        font-size: 0.85rem;
+        margin-bottom: 20px;
+    }
+
+    .timeline-wrapper {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .timeline-years {
+        flex-direction: row;
+        max-height: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0 0 6px 0;
+        gap: 6px;
+        -webkit-overflow-scrolling: touch;
+        margin-bottom: 10px;
+        background: #f9f9f9;
+        padding: 8px 0 8px 0;
+        margin-left: -12px;
+        margin-right: -12px;
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .year-btn {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+        min-width: 75px;
+        flex-shrink: 0;
+        border-radius: 6px;
+    }
+
+    .year-btn:hover::before,
+    .year-btn.active::before {
+        width: 2px;
+    }
+
+    .timeline-content {
+        padding: 20px 14px;
+        border-radius: 10px;
+        background: rgba(255, 255, 255, 0.02);
+        min-height: auto;
+    }
+
+    .timeline-content::before {
+        height: 2px;
+    }
+
+    .content-year {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+    }
+
+    .content-headline {
+        font-size: 1.05rem;
+        margin-bottom: 18px;
+        line-height: 1.3;
+    }
+
+    .content-section {
+        margin-bottom: 20px;
+    }
+
+    .content-section-title {
+        font-size: 0.78rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 10px;
+    }
+
+    .content-bullets li {
+        font-size: 0.85rem;
+        padding: 6px 0 6px 20px;
+        margin-bottom: 5px;
+        border-left: 1.5px solid rgba(212, 175, 55, 0.25);
+        line-height: 1.5;
+    }
+
+    .project-badge {
+        font-size: 0.78rem;
+        padding: 6px 12px;
+        margin-top: 12px;
+    }
+}
+
+/* ========== HERO SUSTAINABILITY BANNER MOBILE FIX ========== */
+@media (max-width: 480px) {
+    .hero_sustainability_banner {
+        min-height: auto;
+        padding-top: 40px;
+        padding-bottom: 0;
+    }
+
+    .hero_sustain_bg {
+        height: 50%;
+    }
+
+    .hero_sustain_content {
+        padding: 0 16px;
+        margin-bottom: 20px;
+        max-width: 100%;
+    }
+
+    .hero_sustain_content h1 {
+        font-size: 1.4rem;
+        margin-bottom: 10px;
+        line-height: 1.2;
+    }
+
+    .hero_sustain_content p {
+        font-size: 0.78rem;
+        margin-bottom: 18px;
+        line-height: 1.5;
+    }
+
+    .pledge_btn {
+        padding: 10px 28px;
+        font-size: 0.75rem;
+        letter-spacing: 0.4px;
+    }
+
+    .hero_sustain_stats {
+        grid-template-columns: 1fr;
+        margin-top: 0;
+    }
+
+    .sustain_stat {
+        padding: 18px 12px;
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .sustain_stat:last-child {
+        border-bottom: none;
+    }
+
+    .stat_num {
+        font-size: 1.4rem;
+        margin-bottom: 2px;
+    }
+
+    .stat_label {
+        font-size: 0.62rem;
+        letter-spacing: 0.4px;
+    }
+}
+
+/* ========== FEATURED PROPERTIES MOBILE FIX ========== */
+@media (max-width: 480px) {
+    .featured_properties_section {
+        overflow: visible;
+    }
+
+    .featured_header {
+        margin-bottom: 30px;
+    }
+
+    .featured_header small {
+        font-size: 0.68rem;
+        margin-bottom: 10px;
+    }
+
+    .featured_header h2 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .featured_properties_grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        margin-top: 30px;
+    }
+
+    .property_image {
+        height: 160px;
+    }
+
+    .property_content {
+        padding: 16px 14px;
+    }
+
+    .property_content h3 {
+        font-size: 1.05rem;
+        margin-bottom: 6px;
+    }
+
+    .property_address {
+        font-size: 0.82rem;
+        margin-bottom: 8px;
+    }
+
+    .property_description {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+    }
+
+    .property_details {
+        gap: 6px;
+        margin-bottom: auto;
+        padding-bottom: 12px;
+    }
+
+    .detail-item {
+        font-size: 0.78rem;
+    }
+
+    .btn_property {
+        padding: 10px 18px;
+        font-size: 0.8rem;
+        margin-top: 14px;
+    }
+}
+
+/* ========== VALUE PROPOSITION MOBILE FIX ========== */
+@media (max-width: 480px) {
+    .value_proposition {
+        padding: 0 12px;
+    }
+
+    .value_proposition .title small {
+        font-size: 0.65rem;
+        margin-bottom: 8px;
+    }
+
+    .value_proposition .title h2 {
+        font-size: 1.5rem;
+        margin-bottom: 12px;
+    }
+
+    .value_cards_grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .value_card {
+        padding: 20px 16px;
+    }
+
+    .card_icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        margin-bottom: 12px;
+    }
+
+    .value_card h4 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+    }
+
+    .value_card p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+}
+
+/* ========== PROJECTS GALLERY MOBILE FIX ========== */
+@media (max-width: 480px) {
+    .projects_gallery_section {
+        padding: 40px 0;
+    }
+
+    .projects_header .title h2 {
+        font-size: 1.5rem;
+    }
+
+    .projects_filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+        margin-bottom: 30px;
+    }
+
+    .filter_btn {
+        padding: 8px 14px;
+        font-size: 0.8rem;
+    }
+
+    .projects_grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding: 0 12px;
+    }
+
+    .project_item {
+        aspect-ratio: 16 / 12;
+    }
+
+    .overlay_content h3 {
+        font-size: 1rem;
+    }
+
+    .overlay_content p {
+        font-size: 0.75rem;
+        margin-bottom: 10px;
+    }
+
+    .overlay_icons {
+        gap: 8px;
+    }
+
+    .icon_btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ========== GENERAL MOBILE SPACING OPTIMIZATION ========== */
+@media (max-width: 480px) {
+    body {
+        overflow-x: hidden;
+    }
+
+    main {
+        overflow-x: hidden;
+    }
+
+    /* Remove excessive bottom padding/margins on sections */
+    .margin_120_95 {
+        margin: 50px 0 !important;
+    }
+
+    /* Ensure containers don't overflow */
+    .container,
+    .container-fluid {
+        overflow: hidden;
+    }
+
+    /* Optimize padding on major sections */
+    section {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
+
+    /* Remove white space caused by absolute positioning */
+    [style*="position: absolute"] {
+        max-width: 100%;
+    }
+
+    /* Full-width containers on mobile */
+    .full-width-section {
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+        width: 100vw;
+    }
+}
+
+/* ========== FOOTER MOBILE OPTIMIZATION ========== */
+@media (max-width: 480px) {
+    .premium_footer {
+        padding: 30px 12px 0;
+    }
+
+    .footer_container {
+        gap: 25px;
+        padding-bottom: 25px;
+        grid-template-columns: 1fr;
+    }
+
+    .footer_section {
+        gap: 10px;
+    }
+
+    .logo_img {
+        max-width: 55px;
+    }
+
+    .company_name {
+        font-size: 0.9rem;
+        margin-bottom: 6px;
+    }
+
+    .company_address {
+        font-size: 0.78rem;
+        margin-bottom: 10px;
+    }
+
+    .company_contact p {
+        font-size: 0.75rem;
+        margin: 4px 0;
+    }
+
+    .section_title {
+        font-size: 0.72rem;
+        margin-bottom: 12px;
+    }
+
+    .nav_links li a,
+    .lifestyle_links li a,
+    .projects_links li a {
+        font-size: 0.78rem;
+    }
+
+    .footer_bottom {
+        padding: 16px 12px;
+    }
+
+    .bottom_content {
+        gap: 12px;
+    }
+
+    .copyright {
+        font-size: 0.72rem;
+    }
+
+    .bottom_link {
+        font-size: 0.72rem;
+    }
+
+    .footer_bottom_links {
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+}
+
+/* ========== JOURNEY SECTION MOBILE FIX ========== */
+@media (max-width: 480px) {
+    .avadh_journey_section {
+        padding: 50px 0;
+    }
+
+    .journey_header {
+        margin-bottom: 35px;
+        padding: 0 12px;
+    }
+
+    .journey_header small {
+        font-size: 0.65rem;
+        margin-bottom: 8px;
+    }
+
+    .journey_header h2 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+    }
+
+    .journey_header p {
+        font-size: 0.9rem;
+    }
+
+    .journey_timeline {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 0 10px;
+    }
+
+    .journey_timeline::before {
+        display: none;
+    }
+
+    .timeline_card {
+        padding: 20px 14px;
+    }
+
+    .card_number {
+        width: 36px;
+        height: 36px;
+        font-size: 0.9rem;
+        top: -14px;
+    }
+
+    .card_icon {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+        margin-bottom: 12px;
+    }
+
+    .timeline_card h3 {
+        font-size: 0.95rem;
+        margin-bottom: 8px;
+    }
+
+    .timeline_card p {
+        font-size: 0.8rem;
+        margin-bottom: 12px;
+        line-height: 1.5;
+    }
+
+    .card_label {
+        font-size: 0.7rem;
+        padding: 5px 10px;
+    }
+}
+
+/* ========== TESTIMONIALS MOBILE FIX ========== */
+@media (max-width: 480px) {
+    .testimonials_social_section {
+        padding: 40px 12px;
+    }
+
+    .testimonials_container {
+        gap: 24px;
+        grid-template-columns: 1fr;
+    }
+
+    .testimonial_card,
+    .social_connect_card {
+        padding: 28px 16px;
+        border-radius: 10px;
+    }
+
+    .review_stars {
+        font-size: 1.3rem;
+        gap: 5px;
+        margin-bottom: 14px;
+    }
+
+    .review_quote {
+        font-size: 0.85rem;
+        margin-bottom: 12px;
+        line-height: 1.5;
+    }
+
+    .reviewer_name {
+        font-size: 0.9rem;
+        margin-bottom: 14px;
+    }
+
+    .review_btn {
+        padding: 9px 24px;
+        font-size: 0.75rem;
+    }
+
+    .social_title {
+        font-size: 1rem;
+        margin-bottom: 4px;
+    }
+
+    .social_subtitle {
+        font-size: 0.75rem;
+        margin-bottom: 18px;
+    }
+
+    .social_grid {
+        gap: 10px;
+    }
+
+    .social_link {
+        padding: 12px 8px;
+        font-size: 0.68rem;
+        gap: 5px;
+    }
+
+    .social_link i {
+        font-size: 1rem;
+    }
+}
+
+/* ========== CREATIVE CONNECT SECTION MOBILE FIX ========== */
+@media (max-width: 480px) {
+    .creative-connect-section {
+        padding: 40px 12px;
+    }
+
+    .connect-header h2 {
+        font-size: 1.5rem;
+        line-height: 1.2;
+        margin-bottom: 12px;
+    }
+
+    .connect-header .subheadline {
+        font-size: 0.85rem;
+        margin-bottom: 25px;
+    }
+
+    .stats-showcase {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+        margin-bottom: 25px;
+    }
+
+    .stat-item {
+        gap: 4px;
+    }
+
+    .stat-number {
+        font-size: 1.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.65rem;
+    }
+
+    .cta-cards-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .cta-card {
+        padding: 20px 16px;
+    }
+
+    .card-icon {
+        font-size: 1.8rem;
+        width: 50px;
+        height: 50px;
+    }
+
+    .card-title {
+        font-size: 1rem;
+        margin: 12px 0 4px 0;
+    }
+
+    .card-text {
+        font-size: 0.75rem;
+        margin-bottom: 10px;
+    }
+
+    .card-link {
+        font-size: 0.85rem;
+    }
+
+    .trust-badge {
+        margin-top: 20px;
+    }
+
+    .badge-text {
+        font-size: 0.85rem;
+    }
+}
+
+/* ========== HIDE DECORATIVE ELEMENTS ON MOBILE ========== */
+@media (max-width: 480px) {
+    /* Hide unnecessary decorative shapes */
+    .floating-shape {
+        opacity: 0.3;
+    }
+
+    .glow-orb {
+        opacity: 0.15;
+    }
+
+    /* Optimize absolute positioned elements */
+    .mouse_wp {
+        display: none;
+    }
+
+    /* Reduce opacity of overlays */
+    .hero_sustain_overlay {
+        background: linear-gradient(180deg, rgba(26, 77, 46, 0.45) 0%, rgba(45, 106, 79, 0.55) 50%, rgba(10, 14, 39, 0.65) 100%);
+    }
+}
+
+/*========== END MOBILE RESPONSIVENESS OPTIMIZATIONS ==========*/

@@ -1591,6 +1591,19 @@
     scrollbar-color: #d4af37 #1a1f3a;
 }
 
+@media (max-width: 1024px) {
+    .timeline-years {
+        flex: 0 0 auto;
+        flex-direction: row;
+        max-height: none;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0 0 10px 0;
+        gap: 10px;
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
 .timeline-years::-webkit-scrollbar {
     width: 6px;
 }
@@ -1859,6 +1872,13 @@
     padding-bottom: 0;
 }
 
+@media (max-width: 480px) {
+    .hero_sustainability_banner {
+        min-height: auto;
+        padding-bottom: 0;
+    }
+}
+
 .hero_sustain_bg {
     position: absolute;
     top: 0;
@@ -1960,6 +1980,22 @@
 
 .sustain_stat:last-child {
     border-right: none;
+}
+
+@media (max-width: 480px) {
+    .hero_sustain_stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .sustain_stat {
+        padding: 20px 15px;
+        border-right: none;
+        border-bottom: 1px solid #f0f0f0;
+    }
+    
+    .sustain_stat:last-child {
+        border-bottom: none;
+    }
 }
 
 .stat_num {
