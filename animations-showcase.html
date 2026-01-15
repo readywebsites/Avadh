@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Animations Showcase - Paradise</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/premium-animations.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        body {
+            background: #faf8f5;
+            font-family: "Montserrat", Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+        .showcase-container {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .showcase-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .showcase-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: pageLoad 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) backwards;
+        }
+
+        .showcase-title.text-gradient {
+            background: linear-gradient(135deg, #978667, #c9a227, #4b514d);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 8s ease infinite;
+        }
+
+        .showcase-subtitle {
+            font-size: 1.3rem;
+            color: #666;
+            animation: pageLoad 0.8s cubic-bezier(0.45, 0.05, 0.55, 0.95) backwards 0.2s;
+        }
+
+        .animation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 100px;
+        }
+
+        .animation-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: all 0.6s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+        }
+
+        .animation-card.fade-in-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .animation-card.fade-in-scroll.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animation-card.slide-left-scroll {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+
+        .animation-card.slide-left-scroll.in-view {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .animation-card.scale-up-scroll {
+            opacity: 0;
+            transform: scale(0.8);
+        }
+
+        .animation-card.scale-up-scroll.in-view {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .animation-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .animation-card h3 {
+            color: #978667;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .animation-card p {
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.95rem;
+        }
+
+        .demo-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #c9a227, #978667);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease-in-out;
+            text-decoration: none;
+        }
+
+        .demo-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.3);
+        }
+
+        .demo-area {
+            background: linear-gradient(135deg, rgba(151, 134, 103, 0.05), rgba(201, 162, 39, 0.05));
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 20px;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .demo-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #978667;
+            text-align: center;
+        }
+
+        .section-title {
+            text-align: center;
+            margin: 80px 0 40px 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .section-title.text-gradient {
+            background: linear-gradient(135deg, #978667, #c9a227, #4b514d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stagger-item {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 15px;
+            background: #978667;
+            color: white;
+            border-radius: 8px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: none;
+        }
+
+        .stagger-item.reveal {
+            opacity: 1;
+            transform: translateY(0);
+            animation: none;
+        }
+
+        .particle-effect {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 50px auto;
+        }
+
+        .particle {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #c9a227;
+            border-radius: 50%;
+            opacity: 0.7;
+        }
+
+        .pricing-section {
+            background: linear-gradient(135deg, rgba(151, 134, 103, 0.1), rgba(201, 162, 39, 0.1));
+            padding: 60px 20px;
+            border-radius: 20px;
+            margin-top: 60px;
+        }
+
+        .price-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.6s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .price-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #c9a227, #978667);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.6s ease;
+        }
+
+        .price-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .price-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #c9a227;
+            margin: 20px 0;
+        }
+
+        @keyframes pageLoad {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #c9a227, #978667);
+            z-index: 9999;
+            transition: width 0.1s linear;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 15px 25px;
+            color: #333;
+            text-decoration: none;
+            font-weight: 600;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        nav a::before {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #c9a227;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::before,
+        nav a.active::before {
+            width: 100%;
+        }
+
+        .hero-showcase {
+            min-height: 80vh;
+            background: linear-gradient(135deg, rgba(151, 134, 103, 0.1), rgba(201, 162, 39, 0.1));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            animation: pageLoad 0.8s ease backwards;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: #666;
+            margin-bottom: 30px;
+            animation: pageLoad 0.8s ease backwards 0.2s;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, #c9a227, #978667);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            animation: pageLoad 0.8s ease backwards 0.4s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(201, 162, 39, 0.3);
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #c9a227;
+            margin-bottom: 15px;
+        }
+
+        .feature-item h4 {
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .feature-item p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Scroll Progress Indicator -->
+    <div class="scroll-progress"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#animations" class="nav-link">Animations</a>
+        <a href="#features" class="nav-link">Features</a>
+        <a href="#pricing" class="nav-link">Pricing</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-showcase">
+        <div class="hero-content">
+            <h1 class="text-gradient">Premium Animation Showcase</h1>
+            <p>Experience smooth animations, elegant transitions, and creative visual effects</p>
+            <button class="cta-button btn-premium">Explore Now</button>
+        </div>
+    </section>
+
+    <!-- Animations Section -->
+    <section id="animations">
+        <div class="container">
+            <h2 class="section-title text-gradient">Animation Effects</h2>
+            
+            <div class="animation-grid">
+                <!-- Fade In -->
+                <div class="animation-card fade-in-scroll">
+                    <h3><i class="bi bi-star"></i> Fade In</h3>
+                    <p>Smooth fade-in animation when elements enter the viewport</p>
+                    <div class="demo-area">
+                        <div class="demo-text">Fading In</div>
+                    </div>
+                </div>
+
+                <!-- Slide Left -->
+                <div class="animation-card slide-left-scroll">
+                    <h3><i class="bi bi-arrow-right"></i> Slide Left</h3>
+                    <p>Elements slide in from the left with a smooth easing</p>
+                    <div class="demo-area">
+                        <div class="demo-text" style="animation: slideInFromLeft 0.6s ease both;">←Sliding In</div>
+                    </div>
+                </div>
+
+                <!-- Scale Up -->
+                <div class="animation-card scale-up-scroll">
+                    <h3><i class="bi bi-zoom-in"></i> Scale Up</h3>
+                    <p>Dynamic scale-up animation for impactful entrance</p>
+                    <div class="demo-area">
+                        <div class="demo-text" style="animation: scaleUp 0.6s ease both;">Growing</div>
+                    </div>
+                </div>
+
+                <!-- Rotate In -->
+                <div class="animation-card fade-in-scroll" style="animation-delay: 0.2s;">
+                    <h3><i class="bi bi-arrow-clockwise"></i> Rotate</h3>
+                    <p>Rotational entrance animation with scale effect</p>
+                    <div class="demo-area">
+                        <div class="demo-text" style="animation: rotateIn 0.6s ease both;">↻Rotating</div>
+                    </div>
+                </div>
+
+                <!-- Glow Effect -->
+                <div class="animation-card fade-in-scroll" style="animation-delay: 0.4s;">
+                    <h3><i class="bi bi-brightness-high"></i> Glow Effect</h3>
+                    <p>Neon glow text animation for creative impact</p>
+                    <div class="demo-area">
+                        <div class="demo-text neon-glow">Glowing Text</div>
+                    </div>
+                </div>
+
+                <!-- Pulse Animation -->
+                <div class="animation-card fade-in-scroll" style="animation-delay: 0.6s;">
+                    <h3><i class="bi bi-heart"></i> Pulse</h3>
+                    <p>Rhythmic pulsing animation for attention-grabbing</p>
+                    <div class="demo-area">
+                        <div class="demo-text" style="animation: buttonPulse 2s ease-in-out infinite;">💫 Pulsing</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features">
+        <div class="container">
+            <h2 class="section-title text-gradient">Key Features</h2>
+            
+            <div class="feature-list">
+                <div class="feature-item fade-in-scroll">
+                    <div class="feature-icon">⚡</div>
+                    <h4>High Performance</h4>
+                    <p>Optimized animations using CSS transforms and GPU acceleration</p>
+                </div>
+
+                <div class="feature-item fade-in-scroll">
+                    <div class="feature-icon">🎨</div>
+                    <h4>Creative Effects</h4>
+                    <p>Unique visual effects including glitch, morph, and neon glow</p>
+                </div>
+
+                <div class="feature-item fade-in-scroll">
+                    <div class="feature-icon">📱</div>
+                    <h4>Responsive</h4>
+                    <p>Works seamlessly across all devices and screen sizes</p>
+                </div>
+
+                <div class="feature-item fade-in-scroll">
+                    <div class="feature-icon">♿</div>
+                    <h4>Accessible</h4>
+                    <p>Respects prefers-reduced-motion for accessibility</p>
+                </div>
+
+                <div class="feature-item fade-in-scroll">
+                    <div class="feature-icon">🔧</div>
+                    <h4>Easy to Use</h4>
+                    <p>Simple CSS classes and JavaScript API for customization</p>
+                </div>
+
+                <div class="feature-item fade-in-scroll">
+                    <div class="feature-icon">🚀</div>
+                    <h4>Production Ready</h4>
+                    <p>Battle-tested animations optimized for real-world use</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing">
+        <div class="container">
+            <h2 class="section-title text-gradient">Transform Your Website</h2>
+            
+            <div class="pricing-section">
+                <div class="animation-grid">
+                    <div class="price-card fade-in-scroll">
+                        <h3>Starter</h3>
+                        <div class="price-amount">Free</div>
+                        <p>Basic animations and transitions included</p>
+                        <button class="demo-button">Get Started</button>
+                    </div>
+
+                    <div class="price-card fade-in-scroll" style="animation-delay: 0.1s;">
+                        <h3>Professional</h3>
+                        <div class="price-amount">$99</div>
+                        <p>All animations + advanced effects</p>
+                        <button class="demo-button">Upgrade Now</button>
+                    </div>
+
+                    <div class="price-card fade-in-scroll" style="animation-delay: 0.2s;">
+                        <h3>Enterprise</h3>
+                        <div class="price-amount">Custom</div>
+                        <p>Custom animations + dedicated support</p>
+                        <button class="demo-button">Contact Us</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section style="text-align: center; padding: 80px 20px; background: white;">
+        <h2 class="section-title text-gradient">Ready to Elevate Your Design?</h2>
+        <p style="font-size: 1.1rem; color: #666; margin-bottom: 30px;">
+            Start using premium animations today and create an unforgettable user experience
+        </p>
+        <button class="cta-button btn-premium">Start Building</button>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: #333; color: white; text-align: center; padding: 30px; margin-top: 60px;">
+        <p>&copy; 2024 Premium Animations Framework. All rights reserved.</p>
+        <p style="font-size: 0.9rem; margin-top: 10px;">Crafted with ✨ for exceptional web experiences</p>
+    </footer>
+
+    <script src="js/jquery-3.7.1.min.js"></script>
+    <script src="js/premium-animations.js"></script>
+    <script>
+        // Add active class to nav links on scroll
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.querySelector('.scroll-progress');
+            const scrollTop = document.documentElement.scrollTop;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            const scrollPercent = (scrollTop / docHeight) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+
+            // Update active nav link
+            document.querySelectorAll('section').forEach(section => {
+                const navLink = document.querySelector(`a[href="#${section.id}"]`);
+                if (navLink) {
+                    const rect = section.getBoundingClientRect();
+                    if (rect.top <= 150 && rect.bottom >= 150) {
+                        document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                        navLink.classList.add('active');
+                    }
+                }
+            });
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const href = link.getAttribute('href');
+                const section = document.querySelector(href);
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+    <style>
+        @keyframes slideInFromLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleUp {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes rotateIn {
+            from {
+                opacity: 0;
+                transform: rotate(-10deg) scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: rotate(0) scale(1);
+            }
+        }
+    </style>
+</body>
+</html>

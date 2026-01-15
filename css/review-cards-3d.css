@@ -1,0 +1,798 @@
+/* ============================================
+   GSAP-POWERED 3D REVIEW CARDS
+   Premium Tilt Effects, Depth, Shadows
+   ============================================ */
+
+/* ==========================================
+   3D PERSPECTIVE & SETUP
+   ========================================== */
+
+.reviews-section {
+  perspective: 1200px;
+  padding: 80px 40px;
+  background: linear-gradient(135deg, #f8f7f4 0%, #fff 50%, #f8f7f4 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reviews-container {
+  max-width: 1400px;
+  width: 100%;
+}
+
+.reviews-header {
+  text-align: center;
+  margin-bottom: 80px;
+  animation: slideInDown 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.reviews-header h2 {
+  font-size: 48px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  background: linear-gradient(135deg, #978667 0%, #c9a227 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.reviews-header p {
+  font-size: 18px;
+  color: #666;
+  max-width: 600px;
+  margin: 0 auto;
+  animation: fadeIn 1s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+/* ==========================================
+   3D TILT CARD GRID
+   ========================================== */
+
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 40px;
+  perspective: 1200px;
+}
+
+/* ==========================================
+   3D TILT CARD (Main Component)
+   ========================================== */
+
+.review-card {
+  perspective: 1200px;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+}
+
+.review-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  
+  /* Initial state */
+  background: white;
+  border-radius: 16px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  
+  /* Depth layers */
+  border: 1px solid rgba(201, 162, 39, 0.1);
+}
+
+/* ==========================================
+   3D DEPTH EFFECT
+   ========================================== */
+
+.review-card-inner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(201, 162, 39, 0.05) 0%, transparent 100%);
+  border-radius: 16px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.review-card:hover .review-card-inner::before {
+  opacity: 1;
+}
+
+/* ==========================================
+   SHADOW DEPTH LAYERS
+   ========================================== */
+
+.review-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(201, 162, 39, 0) 0%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  border-radius: 16px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.review-card::after {
+  content: '';
+  position: absolute;
+  inset: 5px;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 16px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.review-card:hover::before,
+.review-card:hover::after {
+  opacity: 1;
+}
+
+/* ==========================================
+   3D TILT ON HOVER
+   ========================================== */
+
+.review-card:hover .review-card-inner {
+  transform: rotateX(8deg) rotateY(-8deg) translateZ(20px);
+  box-shadow: 
+    0 20px 40px rgba(151, 134, 103, 0.15),
+    0 0 40px rgba(201, 162, 39, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.review-card:hover:nth-child(2) .review-card-inner {
+  transform: rotateX(8deg) rotateY(8deg) translateZ(20px);
+}
+
+.review-card:hover:nth-child(3n) .review-card-inner {
+  transform: rotateX(-8deg) rotateY(-8deg) translateZ(20px);
+}
+
+/* ==========================================
+   STAR RATING WITH ANIMATION
+   ========================================== */
+
+.review-stars {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 16px;
+  font-size: 18px;
+}
+
+.star {
+  color: #ddd;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform-origin: center;
+  cursor: pointer;
+}
+
+.star.filled {
+  color: #c9a227;
+  text-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
+}
+
+.review-card:hover .star {
+  animation: starPulse 0.6s ease-out;
+}
+
+@keyframes starPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.review-card:hover .star.filled {
+  animation: starGlow 0.8s ease-out infinite;
+}
+
+@keyframes starGlow {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(201, 162, 39, 1);
+  }
+}
+
+/* ==========================================
+   REVIEW CONTENT
+   ========================================== */
+
+.review-content {
+  position: relative;
+  z-index: 2;
+}
+
+.review-text {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 24px;
+  font-style: italic;
+  min-height: 80px;
+  transition: all 0.3s ease;
+}
+
+.review-card:hover .review-text {
+  color: #333;
+  letter-spacing: 0.3px;
+}
+
+/* Animated quote mark */
+.review-text::before {
+  content: '"';
+  position: absolute;
+  left: -10px;
+  top: -10px;
+  font-size: 48px;
+  opacity: 0.1;
+  font-weight: 700;
+  transition: all 0.4s ease;
+}
+
+.review-card:hover .review-text::before {
+  opacity: 0.2;
+  color: #c9a227;
+  transform: translateY(-5px);
+}
+
+/* ==========================================
+   REVIEWER PROFILE
+   ========================================== */
+
+.reviewer-profile {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(201, 162, 39, 0.15);
+  transition: all 0.3s ease;
+}
+
+.review-card:hover .reviewer-profile {
+  border-top-color: #c9a227;
+  transform: translateX(4px);
+}
+
+.reviewer-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #978667 0%, #c9a227 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 24px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+}
+
+.reviewer-avatar::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent);
+  border-radius: 50%;
+}
+
+.reviewer-avatar:hover {
+  animation: avatarGlow 0.6s ease;
+}
+
+@keyframes avatarGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(201, 162, 39, 1);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(201, 162, 39, 0.5);
+  }
+}
+
+.reviewer-info {
+  flex-grow: 1;
+  min-width: 0;
+}
+
+.reviewer-name {
+  font-weight: 600;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 4px;
+  transition: color 0.3s ease;
+}
+
+.review-card:hover .reviewer-name {
+  color: #978667;
+}
+
+.reviewer-title {
+  font-size: 14px;
+  color: #999;
+  transition: color 0.3s ease;
+}
+
+.review-card:hover .reviewer-title {
+  color: #c9a227;
+}
+
+.reviewer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  color: #c9a227;
+  background: rgba(201, 162, 39, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  margin-top: 4px;
+  opacity: 0;
+  animation: badgePopIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.review-card:hover .reviewer-badge {
+  opacity: 1;
+  animation: badgeBounce 0.6s ease;
+}
+
+@keyframes badgePopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes badgeBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+/* ==========================================
+   INTERACTIVE GLOW EFFECT
+   ========================================== */
+
+.review-glow {
+  position: absolute;
+  inset: -2px;
+  border-radius: 16px;
+  background: linear-gradient(
+    135deg,
+    rgba(201, 162, 39, 0) 0%,
+    rgba(201, 162, 39, 0.3) 50%,
+    rgba(201, 162, 39, 0) 100%
+  );
+  background-size: 200% 200%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  animation: glowShift 3s ease-in-out infinite;
+}
+
+.review-card:hover .review-glow {
+  opacity: 1;
+}
+
+@keyframes glowShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* ==========================================
+   VERIFIED BADGE WITH ANIMATION
+   ========================================== */
+
+.review-verified {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  background: linear-gradient(135deg, #c9a227 0%, #ebd7b2 100%);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: 0 4px 15px rgba(201, 162, 39, 0.3);
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  z-index: 10;
+}
+
+.review-card:hover .review-verified {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.review-verified::before {
+  content: '✓';
+  font-weight: 700;
+}
+
+.review-verified::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.3));
+  pointer-events: none;
+}
+
+/* ==========================================
+   LIGHT RAY EFFECT ON HOVER
+   ========================================== */
+
+.review-light-ray {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.2) 100%
+  );
+}
+
+.review-card:hover .review-light-ray {
+  opacity: 1;
+  animation: lightRaySweep 0.8s ease-out;
+}
+
+@keyframes lightRaySweep {
+  from {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.5) -50%,
+      transparent 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+  to {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0) 0%,
+      transparent 50%,
+      rgba(255, 255, 255, 0.2) 150%
+    );
+  }
+}
+
+/* ==========================================
+   STAGGER ANIMATION FOR GRID
+   ========================================== */
+
+.review-card {
+  animation: cardFadeInScale 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) backwards;
+}
+
+.review-card:nth-child(1) { animation-delay: 0s; }
+.review-card:nth-child(2) { animation-delay: 0.15s; }
+.review-card:nth-child(3) { animation-delay: 0.3s; }
+.review-card:nth-child(4) { animation-delay: 0.45s; }
+.review-card:nth-child(5) { animation-delay: 0.6s; }
+.review-card:nth-child(6) { animation-delay: 0.75s; }
+.review-card:nth-child(n+7) { animation-delay: 0.9s; }
+
+@keyframes cardFadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ==========================================
+   SCROLL REVEAL ANIMATION
+   ========================================== */
+
+.review-card.scroll-reveal {
+  opacity: 0;
+  animation: reviewReveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes reviewReveal {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(40px) rotateX(20deg);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0) rotateX(0);
+  }
+}
+
+/* ==========================================
+   PARALLAX TILT EFFECT
+   ========================================== */
+
+.review-card-parallax {
+  position: relative;
+  transform-style: preserve-3d;
+}
+
+.review-card-parallax .review-card-inner {
+  transform-style: preserve-3d;
+}
+
+.review-card-parallax .review-stars {
+  transform-origin: center;
+  transition: all 0.1s ease-out;
+}
+
+.review-card-parallax .review-text {
+  transform-origin: center;
+  transition: all 0.1s ease-out;
+}
+
+.review-card-parallax .reviewer-profile {
+  transform-origin: center;
+  transition: all 0.1s ease-out;
+}
+
+.review-card:hover .review-card-parallax .review-stars {
+  transform: translateZ(10px);
+}
+
+.review-card:hover .review-card-parallax .review-text {
+  transform: translateZ(15px);
+}
+
+.review-card:hover .review-card-parallax .reviewer-profile {
+  transform: translateZ(8px);
+}
+
+/* ==========================================
+   TEXTURE OVERLAY
+   ========================================== */
+
+.review-texture {
+  position: absolute;
+  inset: 0;
+  border-radius: 16px;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.01) 0px,
+      rgba(0, 0, 0, 0.01) 1px,
+      transparent 1px,
+      transparent 2px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.01) 0px,
+      rgba(0, 0, 0, 0.01) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.review-card:hover .review-texture {
+  opacity: 1;
+}
+
+/* ==========================================
+   RESPONSIVE ADJUSTMENTS
+   ========================================== */
+
+@media (max-width: 1024px) {
+  .reviews-grid {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+  }
+
+  .review-card:hover .review-card-inner {
+    transform: rotateX(4deg) rotateY(-4deg) translateZ(10px);
+  }
+
+  .review-card:hover:nth-child(2) .review-card-inner {
+    transform: rotateX(4deg) rotateY(4deg) translateZ(10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .reviews-section {
+    padding: 60px 20px;
+  }
+
+  .reviews-header h2 {
+    font-size: 32px;
+  }
+
+  .reviews-header p {
+    font-size: 16px;
+  }
+
+  .reviews-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .review-card-inner {
+    padding: 30px;
+  }
+
+  .review-card:hover .review-card-inner {
+    transform: rotateX(2deg) rotateY(-2deg) translateZ(5px) !important;
+  }
+
+  .review-text {
+    font-size: 15px;
+  }
+
+  .reviewer-avatar {
+    width: 48px;
+    height: 48px;
+    font-size: 20px;
+  }
+
+  .reviewer-name {
+    font-size: 15px;
+  }
+
+  .reviewer-title {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reviews-section {
+    padding: 40px 16px;
+  }
+
+  .reviews-header h2 {
+    font-size: 24px;
+  }
+
+  .reviews-header {
+    margin-bottom: 40px;
+  }
+
+  .review-card-inner {
+    padding: 24px;
+    border-radius: 12px;
+  }
+
+  .review-text {
+    min-height: 60px;
+    font-size: 14px;
+  }
+
+  .star {
+    font-size: 16px;
+  }
+
+  .review-verified {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .review-card,
+  .review-card-inner,
+  .reviewer-avatar,
+  .review-verified,
+  .reviewer-badge,
+  .review-stars,
+  .star {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .review-card:hover .review-card-inner {
+    transform: none;
+  }
+
+  .review-card:hover {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .reviews-section {
+    background: linear-gradient(135deg, #1a1410 0%, #2c2416 50%, #1a1410 100%);
+  }
+
+  .review-card-inner {
+    background: #2c2416;
+    border-color: rgba(201, 162, 39, 0.2);
+    color: #f0f0f0;
+  }
+
+  .review-text {
+    color: #ccc;
+  }
+
+  .review-card:hover .review-text {
+    color: #f0f0f0;
+  }
+
+  .reviewer-title {
+    color: #aaa;
+  }
+
+  .review-card:hover .reviewer-title {
+    color: #c9a227;
+  }
+
+  .reviewer-name {
+    color: #f0f0f0;
+  }
+
+  .review-card:hover .reviewer-name {
+    color: #ebd7b2;
+  }
+
+  .reviewer-profile {
+    border-top-color: rgba(201, 162, 39, 0.2);
+  }
+
+  .review-card:hover .reviewer-profile {
+    border-top-color: #c9a227;
+  }
+}

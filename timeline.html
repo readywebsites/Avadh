@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avadh Group - Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
+            color: #e0e0e0;
+            min-height: 100vh;
+            padding: 60px 20px;
+        }
+
+        .timeline-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .timeline-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4c1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+        }
+
+        .timeline-header p {
+            font-size: 1.1rem;
+            color: #b0b0b0;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-wrapper {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        /* Timeline Years Panel */
+        .timeline-years {
+            flex: 0 0 200px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 600px;
+            overflow-y: auto;
+            padding-right: 15px;
+            scrollbar-width: thin;
+            scrollbar-color: #d4af37 #1a1f3a;
+        }
+
+        .timeline-years::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .timeline-years::-webkit-scrollbar-track {
+            background: #1a1f3a;
+        }
+
+        .timeline-years::-webkit-scrollbar-thumb {
+            background: #d4af37;
+            border-radius: 3px;
+        }
+
+        .year-btn {
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid transparent;
+            color: #b0b0b0;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .year-btn:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: #d4af37;
+            color: #d4af37;
+            transform: translateX(8px);
+        }
+
+        .year-btn.active {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: #d4af37;
+            color: #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            transform: translateX(8px);
+        }
+
+        .year-btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 3px;
+            background: #d4af37;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .year-btn.active::before {
+            opacity: 1;
+        }
+
+        /* Timeline Content Panel */
+        .timeline-content {
+            flex: 1;
+            min-height: 500px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px;
+            padding: 50px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #d4af37 0%, transparent 100%);
+            opacity: 0.5;
+        }
+
+        .content-item {
+            opacity: 0;
+            animation: fadeInSlide 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeInSlide {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .content-year {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #d4af37 0%, #f4e4c1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .content-headline {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .content-section {
+            margin-bottom: 35px;
+        }
+
+        .content-section-title {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: #d4af37;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .content-bullets {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .content-bullets li {
+            padding: 10px 0 10px 30px;
+            position: relative;
+            color: #d0d0d0;
+            line-height: 1.6;
+            font-size: 1rem;
+            border-left: 2px solid rgba(212, 175, 55, 0.3);
+            margin-bottom: 8px;
+            transition: all 0.3s;
+        }
+
+        .content-bullets li:hover {
+            border-left-color: #d4af37;
+            padding-left: 35px;
+            color: #ffffff;
+        }
+
+        .content-bullets li::before {
+            content: '◆';
+            position: absolute;
+            left: -9px;
+            color: #d4af37;
+            font-size: 0.6rem;
+        }
+
+        .project-badge {
+            display: inline-block;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid #d4af37;
+            color: #d4af37;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        /* Vertical Timeline Rail (visual separator) */
+        .timeline-rail {
+            position: absolute;
+            left: 185px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, #d4af37 0%, rgba(212, 175, 55, 0.2) 100%);
+            opacity: 0.5;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .timeline-wrapper {
+                flex-direction: column;
+                gap: 30px;
+            }
+
+            .timeline-years {
+                flex: 0 0 auto;
+                flex-direction: row;
+                max-height: none;
+                overflow-x: auto;
+                overflow-y: hidden;
+                padding-bottom: 15px;
+                gap: 10px;
+                scrollbar-width: thin;
+            }
+
+            .timeline-years::-webkit-scrollbar {
+                height: 6px;
+            }
+
+            .year-btn {
+                flex: 0 0 auto;
+                min-width: 100px;
+            }
+
+            .timeline-rail {
+                display: none;
+            }
+
+            .timeline-content {
+                padding: 40px;
+                min-height: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timeline-header h1 {
+                font-size: 2rem;
+            }
+
+            .timeline-wrapper {
+                gap: 20px;
+            }
+
+            .year-btn {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+                min-width: 90px;
+            }
+
+            .timeline-content {
+                padding: 30px 20px;
+            }
+
+            .content-year {
+                font-size: 2rem;
+            }
+
+            .content-headline {
+                font-size: 1.2rem;
+            }
+
+            .content-bullets li {
+                font-size: 0.95rem;
+                padding: 8px 0 8px 25px;
+            }
+        }
+
+        /* Loading Animation */
+        @keyframes shimmer {
+            0% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.5;
+            }
+        }
+
+        .loading {
+            animation: shimmer 1.5s infinite;
+        }
+    </style>
+</head>
+<body>
+    <div class="timeline-container">
+        <div class="timeline-header">
+            <h1>Avadh Group Journey</h1>
+            <p>Building Dreams Since 2010</p>
+        </div>
+
+        <div class="timeline-wrapper">
+            <div class="timeline-years" id="timelineYears"></div>
+            <div class="timeline-content" id="timelineContent">
+                <div class="timeline-rail"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Timeline Data - Easy to update
+        const timelineData = {
+            2010: {
+                headline: "2010 – Foundation Year",
+                projectName: "Avadh Group Established",
+                achievements: [
+                    "Founded with vision to build premium residential spaces",
+                    "Registered as Real Estate Developer in Surat",
+                    "Team of 15 professionals"
+                ],
+                growth: [
+                    "Launch of first office in Magob, Surat"
+                ]
+            },
+            2012: {
+                headline: "2012 – First Residential Project",
+                projectName: "Avadh Residency Phase 1",
+                achievements: [
+                    "Launched first residential project with 50+ units",
+                    "Pioneered quality construction standards",
+                    "Successfully delivered 100% on schedule"
+                ],
+                growth: [
+                    "Expanded team to 50+ professionals"
+                ]
+            },
+            2015: {
+                headline: "2015 – Rapid Expansion",
+                projectName: "Multiple Projects Ongoing",
+                achievements: [
+                    "Launched 3 new residential projects simultaneously",
+                    "Total portfolio reached 300+ units",
+                    "Won Best Developer Award"
+                ],
+                growth: [
+                    "Opened satellite office in Athwa, Surat"
+                ]
+            },
+            2016: {
+                headline: "2016 – Major Milestone",
+                projectName: "500+ Homes Delivered",
+                achievements: [
+                    "Successfully delivered 500+ residential units",
+                    "98% customer satisfaction rating",
+                    "Recognition from Gujarat Real Estate Authority"
+                ],
+                growth: [
+                    "Became one of Surat's top 10 developers"
+                ]
+            },
+            2018: {
+                headline: "2018 – Diversification",
+                projectName: "Commercial Real Estate Entry",
+                achievements: [
+                    "Launched first commercial project",
+                    "Portfolio includes retail and office spaces",
+                    "Strategic partnerships with major retailers"
+                ],
+                growth: [
+                    "Team strength increased to 200+ professionals"
+                ]
+            },
+            2019: {
+                headline: "2019 – Commercial Leadership",
+                projectName: "Avadh Business Park",
+                achievements: [
+                    "Entered commercial real estate with premium business park",
+                    "2 lakh sq ft of Grade-A office space",
+                    "Attracted MNCs and corporate clients"
+                ],
+                growth: [
+                    "Expanded operations to 3 new regions"
+                ]
+            },
+            2021: {
+                headline: "2021 – Pandemic Success",
+                projectName: "Resilience & Growth",
+                achievements: [
+                    "Continued growth despite pandemic challenges",
+                    "Completed 1000+ residential units",
+                    "Launched digital virtual tours and booking"
+                ],
+                growth: [
+                    "Achieved ₹500 Cr annual turnover"
+                ]
+            },
+            2022: {
+                headline: "2022 – Landmark Township",
+                projectName: "Avadh Smart City Township",
+                achievements: [
+                    "Announced flagship township project in Surat",
+                    "500+ acre integrated development",
+                    "Focus on sustainable and smart city features"
+                ],
+                growth: [
+                    "Won Multiple Excellence Awards in Real Estate"
+                ]
+            },
+            2024: {
+                headline: "2024 – Luxury Segment",
+                projectName: "Premium Housing Launch",
+                achievements: [
+                    "Entered luxury housing segment with high-end villas",
+                    "Focus on ultra-luxury amenities and design",
+                    "2000+ sq ft residential units with smart home features"
+                ],
+                growth: [
+                    "Expanded to ₹1000 Cr+ investment portfolio"
+                ]
+            },
+            2025: {
+                headline: "2025 – Expansion & Innovation",
+                projectName: "Next-Gen Premium Housing",
+                achievements: [
+                    "Launched innovative eco-friendly luxury projects",
+                    "Integration of AI and IoT in smart homes",
+                    "Expansion into retail and hospitality segments"
+                ],
+                growth: [
+                    "Achieved 15 years of excellence in real estate",
+                    "5000+ happy homeowners"
+                ]
+            },
+            2026: {
+                headline: "2026 – Global Vision",
+                projectName: "International Expansion",
+                achievements: [
+                    "Exploring international real estate opportunities",
+                    "Partnerships with global developers",
+                    "Investment in sustainable construction technologies"
+                ],
+                growth: [
+                    "Vision to become a leading global real estate player"
+                ]
+            }
+        };
+
+        class Timeline {
+            constructor() {
+                this.yearsContainer = document.getElementById('timelineYears');
+                this.contentContainer = document.getElementById('timelineContent');
+                this.currentYear = 2022; // Default year
+                this.init();
+            }
+
+            init() {
+                this.renderYearButtons();
+                this.renderContent(this.currentYear);
+            }
+
+            renderYearButtons() {
+                const years = Object.keys(timelineData).sort((a, b) => a - b);
+                
+                years.forEach(year => {
+                    const button = document.createElement('button');
+                    button.className = 'year-btn';
+                    button.textContent = year;
+                    button.dataset.year = year;
+                    
+                    if (parseInt(year) === this.currentYear) {
+                        button.classList.add('active');
+                    }
+                    
+                    button.addEventListener('click', () => this.selectYear(year, button));
+                    this.yearsContainer.appendChild(button);
+                });
+            }
+
+            selectYear(year, button) {
+                // Remove active class from all buttons
+                document.querySelectorAll('.year-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Scroll button into view if needed
+                button.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+                
+                // Update content
+                this.currentYear = parseInt(year);
+                this.renderContent(this.currentYear);
+            }
+
+            renderContent(year) {
+                const data = timelineData[year];
+                
+                if (!data) return;
+                
+                this.contentContainer.innerHTML = `
+                    <div class="timeline-rail"></div>
+                    <div class="content-item">
+                        <div class="content-year">${year}</div>
+                        <div class="content-headline">${data.headline}</div>
+                        
+                        <div class="content-section">
+                            <div class="content-section-title">Achievements</div>
+                            <ul class="content-bullets">
+                                ${data.achievements.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                        
+                        ${data.growth ? `
+                            <div class="content-section">
+                                <div class="content-section-title">Growth & Development</div>
+                                <ul class="content-bullets">
+                                    ${data.growth.map(item => `<li>${item}</li>`).join('')}
+                                </ul>
+                            </div>
+                        ` : ''}
+                        
+                        ${data.projectName ? `
+                            <div class="project-badge">📍 ${data.projectName}</div>
+                        ` : ''}
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize timeline on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            new Timeline();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            const years = Object.keys(timelineData).sort((a, b) => a - b);
+            const currentIndex = years.indexOf(String(document.querySelector('.year-btn.active').dataset.year));
+            
+            if (e.key === 'ArrowRight' && currentIndex < years.length - 1) {
+                const nextButton = document.querySelector(`[data-year="${years[currentIndex + 1]}"]`);
+                nextButton.click();
+            } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                const prevButton = document.querySelector(`[data-year="${years[currentIndex - 1]}"]`);
+                prevButton.click();
+            }
+        });
+    </script>
+</body>
+</html>

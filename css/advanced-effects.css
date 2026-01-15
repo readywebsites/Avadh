@@ -1,0 +1,523 @@
+/*===========================================
+  ADVANCED CREATIVE EFFECTS
+  Unique animations and visual effects
+  for maximum creative impact
+============================================*/
+
+/* =================== ADVANCED RIPPLE EFFECT =================== */
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.6);
+  transform: scale(0);
+  animation: rippleEffect 0.6s ease-out;
+  pointer-events: none;
+}
+
+@keyframes rippleEffect {
+  to {
+    transform: scale(4);
+    opacity: 0;
+  }
+}
+
+/* =================== MAGNETIC BUTTON EFFECT =================== */
+
+.magnetic-button {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.magnetic-button:hover {
+  animation: magneticPulse 0.6s ease-out;
+}
+
+@keyframes magneticPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* =================== AURORA EFFECT =================== */
+
+@keyframes aurora {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.aurora-bg {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: aurora 15s ease infinite;
+}
+
+/* =================== HOLOGRAPHIC EFFECT =================== */
+
+.holographic {
+  background: linear-gradient(
+    45deg,
+    rgba(255, 0, 150, 0.1),
+    rgba(0, 255, 200, 0.1)
+  );
+  animation: holographicShift 4s ease-in-out infinite;
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+}
+
+@keyframes holographicShift {
+  0%, 100% {
+    background: linear-gradient(
+      45deg,
+      rgba(255, 0, 150, 0.1),
+      rgba(0, 255, 200, 0.1)
+    );
+  }
+  50% {
+    background: linear-gradient(
+      225deg,
+      rgba(255, 0, 150, 0.2),
+      rgba(0, 255, 200, 0.2)
+    );
+  }
+}
+
+/* =================== GEOMETRIC PATTERN ANIMATION =================== */
+
+.geometric-pattern {
+  background: linear-gradient(45deg, transparent 25%, rgba(201, 162, 39, 0.1) 25%),
+              linear-gradient(-45deg, transparent 25%, rgba(201, 162, 39, 0.1) 25%),
+              linear-gradient(45deg, rgba(201, 162, 39, 0.1) 75%, transparent 75%),
+              linear-gradient(-45deg, rgba(201, 162, 39, 0.1) 75%, transparent 75%);
+  background-size: 40px 40px;
+  background-position: 0 0, 10px 0, 10px -10px, 0px -10px;
+  animation: geometricShift 4s linear infinite;
+}
+
+@keyframes geometricShift {
+  0% {
+    background-position: 0 0, 10px 0, 10px -10px, 0px -10px;
+  }
+  100% {
+    background-position: 40px 0, 50px 0, 50px -10px, 40px -10px;
+  }
+}
+
+/* =================== CRYSTALLINE EFFECT =================== */
+
+.crystalline {
+  clip-path: polygon(
+    0% 0%, 10% 20%, 20% 0%, 30% 10%, 40% 0%, 
+    50% 15%, 60% 0%, 70% 20%, 80% 0%, 90% 15%, 100% 0%,
+    100% 100%, 90% 85%, 80% 100%, 70% 80%, 60% 100%, 
+    50% 85%, 40% 100%, 30% 90%, 20% 100%, 10% 85%, 0% 100%
+  );
+}
+
+.crystalline-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.crystalline-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+  animation: crystallineShine 3s infinite;
+}
+
+@keyframes crystallineShine {
+  0% {
+    transform: rotate(0deg) translateX(-100%);
+  }
+  100% {
+    transform: rotate(0deg) translateX(100%);
+  }
+}
+
+/* =================== FROSTED GLASS EFFECT =================== */
+
+.frosted-glass {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  transition: all 0.3s ease;
+}
+
+.frosted-glass:hover {
+  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.5);
+}
+
+/* =================== CYBERPUNK EFFECT =================== */
+
+.cyberpunk {
+  position: relative;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.cyberpunk::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  color: #00ff00;
+  animation: cyberpunkFlicker 0.15s infinite;
+}
+
+@keyframes cyberpunkFlicker {
+  0% {
+    text-shadow: -2px 0 #ff00de, 2px 0 #00ffff;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 20%, 0% 20%);
+  }
+  20% {
+    text-shadow: -2px 0 #ff00de, 2px 0 #00ffff;
+    clip-path: polygon(0% 60%, 100% 60%, 100% 100%, 0% 100%);
+  }
+  40% {
+    text-shadow: -2px 0 #ff00de, 2px 0 #00ffff;
+    clip-path: polygon(0% 30%, 100% 30%, 100% 70%, 0% 70%);
+  }
+  60% {
+    text-shadow: -2px 0 #ff00de, 2px 0 #00ffff;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 0% 50%);
+  }
+  80% {
+    text-shadow: -2px 0 #ff00de, 2px 0 #00ffff;
+    clip-path: polygon(0% 80%, 100% 80%, 100% 100%, 0% 100%);
+  }
+  100% {
+    text-shadow: -2px 0 #ff00de, 2px 0 #00ffff;
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+}
+
+/* =================== ORGANIC BLOB ANIMATION =================== */
+
+@keyframes blob {
+  0%, 100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  50% {
+    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+  }
+}
+
+.blob {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  animation: blob 7s infinite;
+  position: relative;
+}
+
+.blob::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  animation: blob 7s infinite;
+  opacity: 0.4;
+  filter: blur(20px);
+  animation-delay: -2s;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+
+/* =================== WAVE ANIMATION =================== */
+
+.wave-container {
+  position: relative;
+  height: 150px;
+  background: white;
+  overflow: hidden;
+}
+
+.wave {
+  position: absolute;
+  width: 200%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.87,168.19-17.28,250.6-.39C823.78,31,906.4,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" fill="%23c9a227" opacity="0.3"></path></svg>') repeat-x;
+  background-size: 600px 120px;
+  animation: wave 7s linear infinite;
+}
+
+.wave:nth-child(1) {
+  animation-delay: 0s;
+  opacity: 0.7;
+}
+
+.wave:nth-child(2) {
+  animation-delay: -2s;
+  opacity: 0.5;
+}
+
+.wave:nth-child(3) {
+  animation-delay: -4s;
+  opacity: 0.3;
+}
+
+@keyframes wave {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 600px 0;
+  }
+}
+
+/* =================== MATRIX RAIN EFFECT =================== */
+
+.matrix-text {
+  position: relative;
+  font-family: 'Courier New', monospace;
+  color: #00ff00;
+  text-shadow: 0 0 10px #00ff00;
+  animation: matrixRain 8s linear infinite;
+}
+
+@keyframes matrixRain {
+  0% {
+    opacity: 1;
+    transform: translateY(-100px);
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(800px);
+  }
+}
+
+/* =================== PARALLAX DEPTH EFFECT =================== */
+
+.parallax-depth {
+  position: relative;
+  perspective: 1000px;
+}
+
+.parallax-layer {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  animation: parallaxDepth 20s infinite linear;
+}
+
+.parallax-layer:nth-child(1) {
+  animation-delay: 0s;
+  transform: translateZ(100px);
+  opacity: 0.3;
+}
+
+.parallax-layer:nth-child(2) {
+  animation-delay: -5s;
+  transform: translateZ(50px);
+  opacity: 0.6;
+}
+
+.parallax-layer:nth-child(3) {
+  animation-delay: -10s;
+  transform: translateZ(0px);
+  opacity: 1;
+}
+
+@keyframes parallaxDepth {
+  0% {
+    transform: translateZ(100px) translateY(0);
+  }
+  100% {
+    transform: translateZ(100px) translateY(100%);
+  }
+}
+
+/* =================== SPARK EFFECT =================== */
+
+.spark {
+  position: absolute;
+  pointer-events: none;
+}
+
+.spark::before {
+  content: '';
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: #c9a227;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #c9a227;
+  animation: sparkTrail 1s ease-out forwards;
+}
+
+@keyframes sparkTrail {
+  to {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty));
+    filter: blur(2px);
+  }
+}
+
+/* =================== GLITCH ADVANCED =================== */
+
+.glitch-advanced {
+  position: relative;
+  font-weight: 700;
+}
+
+.glitch-advanced::before,
+.glitch-advanced::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.8;
+}
+
+.glitch-advanced::before {
+  animation: glitchAdvancedA 0.3s infinite;
+  color: #ff00de;
+  z-index: -1;
+}
+
+.glitch-advanced::after {
+  animation: glitchAdvancedB 0.3s infinite;
+  color: #00ffff;
+  z-index: -2;
+}
+
+@keyframes glitchAdvancedA {
+  0% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 33%, 0% 33%);
+    transform: translate(-2px, -2px);
+  }
+  20% {
+    clip-path: polygon(0% 33%, 100% 33%, 100% 66%, 0% 66%);
+    transform: translate(2px, 2px);
+  }
+  40% {
+    clip-path: polygon(0% 66%, 100% 66%, 100% 100%, 0% 100%);
+    transform: translate(-2px, 2px);
+  }
+  60% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 33%, 0% 33%);
+    transform: translate(2px, -2px);
+  }
+  80% {
+    clip-path: polygon(0% 33%, 100% 33%, 100% 66%, 0% 66%);
+    transform: translate(-2px, -2px);
+  }
+  100% {
+    clip-path: polygon(0% 66%, 100% 66%, 100% 100%, 0% 100%);
+    transform: translate(2px, 2px);
+  }
+}
+
+@keyframes glitchAdvancedB {
+  0% {
+    clip-path: polygon(0% 66%, 100% 66%, 100% 100%, 0% 100%);
+    transform: translate(2px, 2px);
+  }
+  20% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 33%, 0% 33%);
+    transform: translate(-2px, -2px);
+  }
+  40% {
+    clip-path: polygon(0% 33%, 100% 33%, 100% 66%, 0% 66%);
+    transform: translate(2px, -2px);
+  }
+  60% {
+    clip-path: polygon(0% 66%, 100% 66%, 100% 100%, 0% 100%);
+    transform: translate(-2px, 2px);
+  }
+  80% {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 33%, 0% 33%);
+    transform: translate(2px, 2px);
+  }
+  100% {
+    clip-path: polygon(0% 33%, 100% 33%, 100% 66%, 0% 66%);
+    transform: translate(-2px, -2px);
+  }
+}
+
+/* =================== INFINITE ROTATION WITH TILT =================== */
+
+.infinite-rotate-tilt {
+  animation: rotateAndTilt 4s infinite cubic-bezier(0.45, 0.05, 0.55, 0.95);
+}
+
+@keyframes rotateAndTilt {
+  0% {
+    transform: rotate(0deg) rotateX(0deg) rotateY(0deg);
+  }
+  25% {
+    transform: rotate(90deg) rotateX(10deg) rotateY(0deg);
+  }
+  50% {
+    transform: rotate(180deg) rotateX(0deg) rotateY(10deg);
+  }
+  75% {
+    transform: rotate(270deg) rotateX(-10deg) rotateY(0deg);
+  }
+  100% {
+    transform: rotate(360deg) rotateX(0deg) rotateY(0deg);
+  }
+}
+
+/* =================== RESPONSIVE ADJUSTMENTS =================== */
+
+@media (max-width: 768px) {
+  .blob {
+    width: 150px;
+    height: 150px;
+  }
+
+  .crystalline-shine::after {
+    animation: crystallineShine 2s infinite;
+  }
+
+  .geometric-pattern {
+    background-size: 30px 30px;
+  }
+}
+
+/* =================== DARK MODE =================== */
+
+@media (prefers-color-scheme: dark) {
+  .frosted-glass {
+    background: rgba(0, 0, 0, 0.2);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .wave-container {
+    background: #1a1a1a;
+  }
+}
