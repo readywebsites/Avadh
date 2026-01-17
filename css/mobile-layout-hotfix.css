@@ -1,0 +1,36 @@
+
+@media (max-width: 768px) {
+    /* Reset all padding and margins */
+    .container,
+    .container-fluid,
+    .row,
+    section,
+    .pattern_2,
+    .hero,
+    .jarallax,
+    .wrapper,
+    #property_search_form {
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Force body and html to be full width */
+    html, body {
+        width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+
+    /* Ensure hero background covers the entire screen */
+    .hero.home-search.full-height,
+    .jarallax > .jarallax-img {
+        width: 100vw !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        object-fit: cover !important;
+    }
+}
