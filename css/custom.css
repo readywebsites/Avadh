@@ -434,7 +434,6 @@
     justify-content: center;
     line-height: 1;
 }
-}
 
 .btn_search::before {
     content: '';
@@ -1144,7 +1143,6 @@
 .projects_gallery_section {
     background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 100%);
     padding: 100px 0;
-    margin: 0 -15px;
     position: relative;
     overflow: hidden;
 }
@@ -1516,7 +1514,7 @@
         font-size: 0.95rem;
     }
 }
-    }
+    
 
     .icon_btn {
         width: 40px;
@@ -1527,7 +1525,7 @@
     .projects_filters {
         margin-bottom: 40px;
     }
-}
+
 
 @media (max-width: 480px) {
     .projects_gallery_section {
@@ -4165,4 +4163,118 @@
         flex-wrap: wrap;
         justify-content: center;
     }
+}
+
+/* =====================================================
+   FINAL MOBILE FIX – FULL WIDTH & CLEAN VIEW
+===================================================== */
+
+@media (max-width: 768px) {
+
+  html, body {
+    overflow-x: hidden;
+  }
+
+  /* Kill unwanted side spacing */
+  .container,
+  .container-fluid,
+  section,
+  .row {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    max-width: 100% !important;
+  }
+
+  /* Fix negative margins */
+  .projects_gallery_section {
+    margin: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  /* Images & videos full width */
+  img,
+  video,
+  iframe {
+    width: 100% !important;
+    height: auto !important;
+    display: block;
+  }
+
+  /* Navigation mobile friendly */
+  #mainNav .nav_menu {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav_link {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  /* Cards spacing fix */
+  .property_card,
+  .value_card,
+  .timeline_card,
+  .project_item,
+  .testimonial_card,
+  .social_connect_card {
+    border-radius: 12px;
+  }
+
+  /* Grid force single column where needed */
+  .featured_properties_grid,
+  .projects_grid,
+  .value_cards_grid,
+  .journey_timeline,
+  .impact_stats_container,
+  .testimonials_container {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* Timeline fix */
+  .timeline-wrapper {
+    flex-direction: column;
+  }
+
+  .timeline-years {
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+  }
+
+  .timeline-content {
+    padding: 24px 18px;
+  }
+
+  /* Footer fix */
+  .footer_container {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .hero_sustain_content h1 {
+    font-size: 1.4rem !important;
+  }
+
+  .hero_sustain_content p {
+    font-size: 0.8rem !important;
+  }
+
+  .btn_search,
+  .btn_property,
+  .pledge_btn,
+  .review_btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .property_image,
+  .pinned-image__container {
+    height: 160px !important;
+  }
 }
